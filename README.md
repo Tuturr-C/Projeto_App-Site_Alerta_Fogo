@@ -23,9 +23,9 @@ Link para o protótipo no Figma: https://www.figma.com/design/HrHzpJbnl8Zfj18xfc
 ## Integrantes
 - Arthur Henrique Silva Gerotto
 - Matheus Balbine Simões
-- Raquel Souza
-- Sophia Joriatti
-- Júlia 
+- Raquel Rubio de Souza
+- Sophia Batista Joriatti
+- Júlia Tiemi Muramoto
 
 
 ## Status do Projeto
