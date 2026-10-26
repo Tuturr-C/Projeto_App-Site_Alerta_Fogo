@@ -1,10 +1,17 @@
 
 body{
-    margin: 100px;
+    margin: 0;
     padding: 0;
     box-sizing: border-box;
     font-family: 'Poppins', sans-serif;
-    background-color: #fff3c9;
+    background-color: #fffae6;
+}
+
+header {
+    background-color: #efe0ae;
+    color: black;
+    padding: 20px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
 }
 
 :root{
