@@ -1,4 +1,3 @@
-
 @font-face {
     font-family: 'Inter', sans-serif;
     src: url('../fonts/Inter-VariableFont_opsz,wght.ttf') format('truetype');
@@ -96,17 +95,19 @@ header {
 }
 
 
-risco-section {
+.risco-section {
     padding: 100px 24px 40px;
     box-sizing: border-box;
 }
 
 
 .mapa-box {
-    width: 100%;
-    height: 450px;
-    border-radius: 16px;
-    overflow: hidden;
+  background: var(--cor-superficie);
+  border: 1px solid rgba(31, 42, 37, 0.12);
+  border-radius: 18px;
+  overflow: hidden;   /* importante para arredondar tudo dentro */
+  padding: 14px 14px 12px;
+  position: relative;
 }
 
 .mapa-box iframe {
@@ -114,6 +115,14 @@ risco-section {
     height: 100%;
     border: 0;
     display: block;
+}
+
+.mapa-ilustrativa {
+  position: relative;
+  height: 420px;
+  border-radius: 14px;
+  overflow: hidden;   /* arredonda o mapa/área interna */
+  background: linear-gradient(180deg, #dfe6d8 0%, #dde5d7 100%);
 }
 
 
@@ -135,3 +144,4 @@ risco-section {
     width: 50px;
     height: 50px;
 }
+
