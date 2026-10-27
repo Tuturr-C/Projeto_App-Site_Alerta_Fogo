@@ -102,6 +102,8 @@ header {
 
 
 .mapa-box {
+  width: 60%;
+  height: 500px;
   background: var(--cor-superficie);
   border: 1px solid rgba(31, 42, 37, 0.12);
   border-radius: 18px;
@@ -111,8 +113,9 @@ header {
 }
 
 .mapa-box iframe {
-    width: 50%;
-    height: 100%;
+    width: 96%;
+    height: 80%;
+    border-radius: 14px;
     border: 0;
     display: block;
 }
@@ -129,14 +132,22 @@ header {
 .contato-section{
     max-width: 900px;
     margin: 60px auto;
+    padding: 0 20px;
+    box-sizing: border-box;
     color: var(--cor-primaria);
 
 }
 
 
-.contato-section h4 {} /* vou mexer ainda nisso*/
 .contato-list {
+    list-style: none;
     color: var(--cor-segundaria);
+    max-width: 500px;
+    margin: 0;
+    padding: 20px;
+    box-sizing: border-box;
+    background-color: var(--cor-superficie);
+    border-radius: 16px;
 }
 
 
@@ -145,3 +156,11 @@ header {
     height: 50px;
 }
 
+.footer {
+    background-color: var(--cor-primaria);
+    color: var(--cor-superficie);
+    padding: 15px;
+    text-align: center;
+
+
+}
