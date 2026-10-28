@@ -1,0 +1,35 @@
+
+.risco-section {
+    padding: 100px 24px 40px;
+    box-sizing: border-box;
+}
+
+
+.mapa-box {
+  width: 60%;
+  height: 500px;
+  background: var(--cor-superficie);
+  border: 1px solid rgba(31, 42, 37, 0.12);
+  border-radius: 18px;
+  overflow: hidden;   /* importante para arredondar tudo dentro */
+  padding: 14px 14px 12px;
+  position: relative;
+}
+
+.mapa-box iframe {
+    width: 96%;
+    height: 80%;
+    border-radius: 14px;
+    border: 0;
+    display: block;
+}
+
+.mapa-ilustrativa {
+  position: relative;
+  height: 420px;
+  border-radius: 14px;
+  overflow: hidden;   /* arredonda o mapa/área interna */
+  background: linear-gradient(180deg, #dfe6d8 0%, #dde5d7 100%);
+}
+
+
