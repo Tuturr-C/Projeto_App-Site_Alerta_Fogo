@@ -1,35 +1,104 @@
 
 .risco-section {
+   
+    margin: 0 auto;
     padding: 100px 24px 40px;
     box-sizing: border-box;
 }
 
 
-.mapa-box {
-  width: 60%;
-  height: 500px;
-  background: var(--cor-superficie);
-  border: 1px solid rgba(31, 42, 37, 0.12);
-  border-radius: 18px;
-  overflow: hidden;   /* importante para arredondar tudo dentro */
-  padding: 14px 14px 12px;
-  position: relative;
+.mapa-card {
+    background: #fff;
+    border-radius: 18px;
+    padding: 16px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+    box-sizing: border-box;
+    max-width: 900px;   
+    margin: 0 ;
 }
 
-.mapa-box iframe {
-    width: 96%;
-    height: 80%;
+
+.mapa-card-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    margin-bottom: 12px;
+}
+
+.mapa-card-header .titulo {
+    margin: 0;
+    font-size: 18px;
+}
+
+.mapa-raio {
+    font-size: 13px;
+    color: #6b7a73;
+}
+
+
+/*Bloco Mapa*/
+.mapa-ilustrativa { 
+    height: 440px;
     border-radius: 14px;
-    border: 0;
-    display: block;
+    overflow: hidden;
+    background: #e8ebdf; 
 }
 
-.mapa-ilustrativa {
-  position: relative;
-  height: 420px;
-  border-radius: 14px;
-  overflow: hidden;   /* arredonda o mapa/área interna */
-  background: linear-gradient(180deg, #dfe6d8 0%, #dde5d7 100%);
+
+#mapa { width: 100%; 
+    height: 100%; 
+}
+
+.pin-fogo {
+    width: 48px;
+    height: 48px;
+    font-size: 24px;        
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background: #e63946;
+    color: #fff;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.35);
+}
+
+mapa-card-footer {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    margin-top: 12px;
+    font-size: 14px;
+}
+
+.legenda_Mapa {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 8px;
+}
+
+.tag_Mapa{
+    padding: 6px 12px;
+    border-radius: 999px;
+    font-weight: 600;
+    font-size: 13px;
+}
+
+.tag-baixo    { background: #e1ead9; color: #3f6b3a; }
+.tag-moderado { background: #f6ecd0; color: #8a6a12; }
+.tag-alto     { background: #f9e0da; color: #b3361f; }
+
+.legenda-foco {
+    color: #b3361f;
+    font-weight: 500;
+}
+
+@media (max-width: 600px) {
+    .mapa-ilustrativa { height: 320px; }
+    .mapa-card-header { flex-direction: column; align-items: flex-start; }
 }
 
 
