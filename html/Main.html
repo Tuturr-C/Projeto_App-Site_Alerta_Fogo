@@ -45,9 +45,11 @@
     <p>Entenda o risco na sua região e acompanhe os alertas ao redor com segurança</p>
     
 
-    <div class="mapa-card">
+    <div class="riscos-layout">
+      <div class="mapa-card">
         <div class="mapa-card-header">
             <h3 class="titulo"><i class="fa-regular fa-map"></i> Perto de você</h3>
+            <span class="mapa-raio">Raio ilustrativo: 5 km</span>
         </div>
 
     <!-- Mapa da região de Campinas -->
@@ -64,7 +66,50 @@
             </div>
             <span class="legenda-foco"><i class="fa-solid fa-fire"></i> Foco de incendio</span>
         </div>
-    </div>
+            </div>
+
+            <aside class="painel-lateral" aria-label="Resumo dos riscos próximos">
+                <div class="risco-resumo">
+                    <div class="resumo-topo">
+                        <span>CAMPINAS (REGIÃO ILUSTRATIVA)</span>
+                        <strong><i class="fa-solid fa-circle"></i> RISCO ALTO</strong>
+                    </div>
+                    <h3>Atenção redobrada hoje</h3>
+                    <p>Tempo seco e vento favorecem o fogo. Evite queimadas e mantenha distância dos focos.</p>
+                </div>
+
+                <div class="alertas-bloco">
+                    <div class="painel-titulo">
+                        <h3>Alertas próximos (Exemplos)</h3>
+                        <span>2 exemplos fictícios</span>
+                    </div>
+
+                    <article class="alerta-item">
+                        <div class="alerta-icone"><i class="fa-solid fa-fire-flame-curved"></i></div>
+                        <div class="alerta-conteudo">
+                            <strong>Foco A · Jardim Ipê</strong>
+                            <span>Vegetação · a 1,2 km (exemplo)</span>
+                            <small class="tag tag-alto">Alto</small>
+                        </div>
+                        <small>Exemplo fictício</small>
+                    </article>
+
+                    <article class="alerta-item">
+                        <div class="alerta-icone"><i class="fa-solid fa-fire-flame-curved"></i></div>
+                        <div class="alerta-conteudo">
+                            <strong>Foco B · Parque do Lago</strong>
+                            <span>Fumaça · a 2,4 km (exemplo)</span>
+                            <small class="tag tag-atencao">Atenção</small>
+                        </div>
+                        <small>Exemplo fictício</small>
+                    </article>
+
+                    <a class="botao-foco" href="Informar_Foco.html">
+                        <i class="fa-solid fa-plus"></i> Informar foco de incêndio
+                    </a>
+                </div>
+            </aside>
+        </div>
 </section>
     
         
