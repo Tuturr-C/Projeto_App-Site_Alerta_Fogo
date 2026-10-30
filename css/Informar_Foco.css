@@ -15,3 +15,28 @@
     --cor-nav: #C94313;
     --cor-navbar:#fff;
 }
+
+
+.info-section {
+    width: min(1280px, 100%);
+    margin: 0 auto;
+    padding: 28px 24px 40px;
+    box-sizing: border-box;
+}
+
+.info-section > h2 {
+    margin: 0 0 4px;
+    font-size: clamp(24px, 3vw, 32px);
+}
+
+.info-section > p {
+    margin: 0 0 18px;
+    color: #66736b;
+}
+
+.info-layout {
+    display: grid;
+    grid-template-columns: minmax(0, 1.8fr) minmax(290px, .82fr);
+    gap: 18px;
+    align-items: start;
+}

@@ -39,7 +39,22 @@
       </div>
     </div>
   </nav>
-  <footer class="footer">
+  
+   <section id="info-proximos" class="info-section" aria-labelledby="ttl-info-proximos"></section>
+      <h2 id="ttl-info-proximos">Informar foco de incêndio </h2>
+      <p>Relate apenas o que consegue ver de um local seguro. Não Se aproxime para confirmar.</p>
+      
+     
+        <form action="">
+          <label>O que vc observou?</label>
+          <label id="subtitulo">Localização</label>
+          <button onclick="pegarLocalizacao()">Obter Localização</button>
+
+        <textarea name="message" rows="10" cols="30">The cat was playing in the garden.</textarea>
+      </form>
+      </aside>
+
+      <footer class="footer">
     <div class="footer-inner">
       <div class="footer-brand">
         <h3>Alerta Fogo</h3>
@@ -49,8 +64,7 @@
           <a href="#" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
           <a href="#" aria-label="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
         </div>
-      </div>
-
+      </div>  
       <div class="footer-links">
         <h4>Navegação</h4>
         <a href="Main.html">Riscos Próximos</a>
@@ -84,7 +98,42 @@
   <!-- JavaScript-->
   <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.slim.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
-   
+   <script>
+        function pegarLocalizacao() {
+            // Verifica se o navegador suporta geolocalização
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(mostrarPosicao, mostrarErro);
+            } else {
+                document.getElementById("resultado").innerHTML = "Geolocalização não é suportada por este navegador.";
+            }
+        }
+
+        // Função executada se o usuário permitir
+        function mostrarPosicao(posicao) {
+            const latitude = posicao.coords.latitude;
+            const longitude = posicao.coords.longitude;
+            document.getElementById("resultado").innerHTML = 
+                `Latitude: ${latitude} <br> Longitude: ${longitude}`;
+        }
+
+        // Função executada em caso de erro ou negação de permissão
+        function mostrarErro(erro) {
+            switch(erro.code) {
+                case erro.PERMISSION_DENIED:
+                    document.getElementById("resultado").innerHTML = "Usuário rejeitou a solicitação de Geolocalização.";
+                    break;
+                case erro.POSITION_UNAVAILABLE:
+                    document.getElementById("resultado").innerHTML = "Informações de localização estão indisponíveis.";
+                    break;
+                case erro.TIMEOUT:
+                    document.getElementById("resultado").innerHTML = "A requisição expirou.";
+                    break;
+                case erro.UNKNOWN_ERROR:
+                    document.getElementById("resultado").innerHTML = "Ocorreu um erro desconhecido.";
+                    break;
+            }
+        }
+    </script>
 
 </body>
 </html>
