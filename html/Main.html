@@ -16,6 +16,7 @@
 </head>
 <body>
 
+  <header>
   <nav class="navbar navbar-expand-lg fixed-top">
     <div class="container-fluid">
       <a class="navbar-brand" href="Main.html">
@@ -39,6 +40,7 @@
       </div>
     </div>
   </nav>
+  </header>
 
    <section id="riscos-proximos" class="risco-section" aria-labelledby="ttl-riscos-proximos">
     <h2 id="ttl-riscos-proximos">Riscos Próximos</h2>
@@ -46,46 +48,46 @@
     
 
     <div class="riscos-layout">
-      <div class="mapa-card">
-        <div class="mapa-card-header">
+      <article class="mapa-card">
+        <header class="mapa-card-header">
             <h3 class="titulo"><i class="fa-regular fa-map"></i> Perto de você</h3>
             <span class="mapa-raio">Raio ilustrativo: 5 km</span>
-        </div>
+        </header>
 
     <!-- Mapa da região de Campinas -->
     <div class="mapa-ilustrativa">
         <div id="mapa"></div>
     </div>
 
-    <div class="mapa-card-footer">
-            <div class="legenda">
+    <footer class="mapa-card-footer">
+            <span class="legenda">
                 <span>Risco:</span>
                 <span class="tag tag-baixo">Baixo</span>
                 <span class="tag tag-moderado">Moderado</span>
                 <span class="tag tag-alto">Alto</span>
-            </div>
+            </span>
             <span class="legenda-foco"><i class="fa-solid fa-fire"></i> Foco de incendio</span>
-        </div>
-            </div>
+        </footer>
+      </article>
 
             <aside class="painel-lateral" aria-label="Resumo dos riscos próximos">
-                <div class="risco-resumo">
-                    <div class="resumo-topo">
+                <article class="risco-resumo">
+                    <header class="resumo-topo">
                         <span>CAMPINAS (REGIÃO ILUSTRATIVA)</span>
                         <strong><i class="fa-solid fa-circle"></i> RISCO ALTO</strong>
-                    </div>
+                    </header>
                     <h3>Atenção redobrada hoje</h3>
                     <p>Tempo seco e vento favorecem o fogo. Evite queimadas e mantenha distância dos focos.</p>
-                </div>
+                </article>
 
-                <div class="alertas-bloco">
-                    <div class="painel-titulo">
-                        <h3>Alertas próximos (Exemplos)</h3>
+                <section class="alertas-bloco" aria-labelledby="titulo-alertas">
+                    <header class="painel-titulo">
+                        <h3 id="titulo-alertas">Alertas próximos (Exemplos)</h3>
                         <span>2 exemplos fictícios</span>
-                    </div>
+                    </header>
 
                     <article class="alerta-item">
-                        <div class="alerta-icone"><i class="fa-solid fa-fire-flame-curved"></i></div>
+                        <span class="alerta-icone"><i class="fa-solid fa-fire-flame-curved"></i></span>
                         <div class="alerta-conteudo">
                             <strong>Foco A · Jardim Ipê</strong>
                             <span>Vegetação · a 1,2 km (exemplo)</span>
@@ -95,7 +97,7 @@
                     </article>
 
                     <article class="alerta-item">
-                        <div class="alerta-icone"><i class="fa-solid fa-fire-flame-curved"></i></div>
+                        <span class="alerta-icone"><i class="fa-solid fa-fire-flame-curved"></i></span>
                         <div class="alerta-conteudo">
                             <strong>Foco B · Parque do Lago</strong>
                             <span>Fumaça · a 2,4 km (exemplo)</span>
@@ -107,7 +109,7 @@
                     <a class="botao-foco" href="Informar_Foco.html">
                         <i class="fa-solid fa-plus"></i> Informar foco de incêndio
                     </a>
-                </div>
+                </section>
             </aside>
         </div>
 </section>

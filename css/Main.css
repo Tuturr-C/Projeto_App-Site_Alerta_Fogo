@@ -1,5 +1,5 @@
 @font-face {
-    font-family: 'Inter', sans-serif;
+    font-family: 'Inter';
     src: url('../fonts/Inter-VariableFont_opsz,wght.ttf') format('truetype');
     font-style: normal;
     font-weight: 100 900;
@@ -12,79 +12,90 @@
     --cor-segundaria: #66736B;
     --cor-fundo: #DEE4DC;
     --cor-nav: #C94313;
-    --cor-navbar:#fff;
+    --cor-navbar: #FFFFFF;
 }
 
-body{
-    margin: 0px;
-    padding-top: 120px;
+*,
+*::before,
+*::after {
     box-sizing: border-box;
+}
+
+article,
+section,
+header,
+footer {
+    margin: 0;
+}
+
+body {
+    margin: 0;
+    padding-top: 72px;
     font-family: 'Inter', sans-serif;
     background-color: var(--cor-fundo);
     color: var(--cor-primaria);
 }
 
-body {
-  margin: 0;
-  padding-top: 72px;              /* altura da navbar no mobile */
-  font-family: 'Inter', sans-serif;
-  background-color: var(--cor-fundo);
-  color: var(--cor-primaria);
-}
-
-/* Base: mobile */
 .navbar {
-  background-color: rgba(255, 255, 255, 0.85);   /* branco meio transparente */
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    background-color: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
 }
 
 .navbar-brand .logo {
-  height: 60px;
-  width: auto;
+    display: block;
+    height: 60px;
+    width: auto;
 }
 
 .nav-pills .nav-link {
-  color: var(--cor-primaria);
-  font-weight: 500;
-  padding: 12px 16px;
-  transition: color 0.2s ease, background-color 0.2s ease;
+    color: var(--cor-primaria);
+    font-weight: 500;
+    padding: 12px 16px;
+    transition: color 0.2s ease, background-color 0.2s ease;
 }
 
 .nav-pills .nav-link:hover,
 .nav-pills .nav-link:focus-visible {
-  color: var(--cor-nav);
+    color: var(--cor-nav);
 }
 
 .nav-pills .nav-link.active {
-  background-color: #ffdab9;
-  color: #8B0000;
+    background-color: #ffdab9;
+    color: #8B0000;
+}
+
+.nav-pills .nav-link:focus-visible,
+.navbar-toggler:focus-visible,
+a:focus-visible,
+button:focus-visible {
+    outline: 3px solid rgba(201, 67, 19, 0.35);
+    outline-offset: 2px;
 }
 
 .navbar-toggler-icon {
-  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='30' height='30' viewBox='0 0 30 30'%3e%3cpath stroke='%23C94313' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='30' height='30' viewBox='0 0 30 30'%3e%3cpath stroke='%23C94313' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
 }
 
-/* Desktop em diante */
 @media (min-width: 992px) {
-  body {
-    padding-top: 100px;
-  }
+    body {
+        padding-top: 100px;
+    }
 
-  .navbar {
-    min-height: 100px;
-    padding: 0 40px;
-  }
+    .navbar {
+        min-height: 100px;
+        padding: 0 40px;
+    }
 
-  .navbar-brand .logo {
-    height: 80px;
-  }
+    .navbar-brand .logo {
+        height: 80px;
+    }
 
-  .nav-pills .nav-link {
-    padding: 8px 16px;
-    margin-left: 8px;
-  }
+    .nav-pills .nav-link {
+        padding: 8px 16px;
+        margin-left: 8px;
+    }
 }
 
 
@@ -93,7 +104,6 @@ body {
     max-width: 900px;
     margin: 60px auto;
     padding: 0 20px;
-    box-sizing: border-box;
     color: var(--cor-primaria);
 
 }
@@ -105,7 +115,6 @@ body {
     max-width: 500px;
     margin: 0;
     padding: 20px;
-    box-sizing: border-box;
     background-color: var(--cor-superficie);
     border-radius: 16px;
 }
