@@ -1,4 +1,30 @@
 
+/*Faixa Em baixo da navbar de localização*/
+.faixa-local {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 6px 10px;
+    padding: 9px 24px;
+    background: #e6eee1;
+    color: #22362f;
+    font-size: 13px;
+}
+
+.faixa-local[hidden] {
+    display: none;          
+}
+
+.faixa-local i {
+    color: #3f6b3a;
+}
+
+.faixa-detalhe {
+    color: #6b7a73;
+    font-size: 12px;
+}
+
+
 .risco-section {
     width: min(1280px, 100%);
     margin: 0 auto;
@@ -37,6 +63,7 @@
 
 .mapa-card-header {
     display: flex;
+    flex-wrap: wrap;
     align-items: center;
     justify-content: space-between;
     gap: 12px;
@@ -51,6 +78,25 @@
 .mapa-raio {
     font-size: 13px;
     color: #6b7a73;
+}
+
+.btn-localizar {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 14px;
+    border: 0;
+    border-radius: 999px;
+    background: #22362f;
+    color: #fff;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.btn-localizar:hover,
+.btn-localizar:focus-visible {
+    background: #2f4a40;
 }
 
 
@@ -79,6 +125,11 @@
     color: #fff;
     box-shadow: 0 2px 6px rgba(0, 0, 0, 0.35);
 }
+
+
+.pin-baixo    { background: #6a994e; }
+.pin-moderado { background: #e9a23b; }
+.pin-alto     { background: #e63946; }
 
 .mapa-card-footer {
     display: flex;
