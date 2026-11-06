@@ -1,0 +1,17 @@
+services:
+  db:
+    image: postgis/postgis:16-3.4
+    container_name: alertefogo-db
+    environment:
+      POSTGRES_USER: alerte
+      POSTGRES_PASSWORD: alerte
+      POSTGRES_DB: alertefogo
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+      # executado automaticamente na primeira vez que o banco é criado
+      - ./schema.sql:/docker-entrypoint-initdb.d/schema.sql
+
+volumes:
+  pgdata:
