@@ -7,6 +7,7 @@
   <title>Informar Foco</title>
  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
   <link rel="stylesheet" href="../css/Main.css">
 
   <link rel = "stylesheet" href="../css/Informar_Foco.css"/>
@@ -41,6 +42,151 @@
     </div>
   </nav>
   </header>
+  <main class="container py-4">
+  <h1 class="h3 font-weight-bold mb-1">Informar foco de incêndio</h1>
+  <p class="text-muted-fogo mb-4">Relate apenas o que consegue ver de um local seguro. Não se aproxime para confirmar.</p>
+  <div class="row">
+  <!-- FORMULÁRIO -->
+    <div class="col-lg-8 mb-4">
+      <form id="form-foco" class="card card-fogo" novalidate>
+        <div class="card-body p-4">
+          <h2 class="h5 font-weight-bold mb-4">O que você observou?</h2>
+
+          <!-- Localização -->
+          <div class="d-flex justify-content-between mb-1">
+            <span class="rotulo">Localização</span>
+            <span class="rotulo-dir" id="rotulo-origem">Escolha no mapa</span>
+          </div>
+          <div class="local-box">
+            <div class="local-icone"><i class="fas fa-map-marker-alt" style="color:var(--verde)"></i></div>
+            <div class="local-texto">
+              <strong id="local-nome">Nenhum local selecionado</strong>
+              <small id="local-detalhe">Digite um endereço, use seu local ou clique no mapa</small>
+            </div>
+            <button type="button" id="btn-editar-local" class="btn btn-sm btn-link text-dark" aria-label="Editar localização">
+              <i class="fas fa-pen"></i>
+            </button>
+          </div>
+ <!-- busca por endereço (abre no lápis) -->
+          <div id="busca-local" class="mt-2 d-none">
+            <div class="input-group input-group-sm">
+              <input type="text" id="busca-endereco" class="form-control"
+                     placeholder="Rua, bairro ou ponto de referência">
+              <div class="input-group-append">
+                <button type="button" id="btn-buscar" class="btn btn-fogo">Buscar</button>
+                <button type="button" id="btn-gps" class="btn btn-claro"><i class="fas fa-crosshairs"></i> Meu local</button>
+              </div>
+            </div>
+          </div>
+ 
+          <a href="#mapa" id="btn-ajustar" class="link-destaque d-inline-block mt-2">
+            <i class="fas fa-crosshairs mr-1"></i>Ajustar localização no mapa
+          </a>
+ 
+          <input type="hidden" name="latitude" id="latitude">
+          <input type="hidden" name="longitude" id="longitude">
+          <input type="hidden" name="local_nome" id="local_nome">
+          <input type="hidden" name="origem_local" id="origem_local" value="mapa">
+ 
+          <!-- Tipo -->
+          <div class="d-flex justify-content-between mt-4 mb-2">
+            <span class="rotulo">Tipo de ocorrência</span>
+            <span class="rotulo-dir">Selecione uma opção</span>
+          </div>
+          <div class="form-row">
+            <label class="tipo-opcao col-sm-4 mb-2 mb-sm-0 position-relative">
+              <input type="radio" name="tipo" value="vegetacao">
+              <span class="tipo-card"><span><i class="fas fa-fire mr-2"></i>Vegetação</span>
+                <i class="far fa-circle"></i><i class="fas fa-check-circle check"></i></span>
+            </label>
+            <label class="tipo-opcao col-sm-4 mb-2 mb-sm-0 position-relative">
+              <input type="radio" name="tipo" value="fumaca">
+              <span class="tipo-card"><span><i class="fas fa-cloud mr-2"></i>Fumaça</span>
+                <i class="far fa-circle"></i><i class="fas fa-check-circle check"></i></span>
+            </label>
+            <label class="tipo-opcao col-sm-4 mb-0 position-relative">
+              <input type="radio" name="tipo" value="outro">
+              <span class="tipo-card"><span><i class="fas fa-ellipsis-h mr-2"></i>Outro</span>
+                <i class="far fa-circle"></i><i class="fas fa-check-circle check"></i></span>
+            </label>
+          </div>
+ 
+          <!-- Descrição -->
+          <div class="d-flex justify-content-between mt-4 mb-2">
+            <label for="descricao" class="rotulo mb-0">Descrição</label>
+            <span class="rotulo-dir">Conte o que consegue ver</span>
+          </div>
+          <textarea id="descricao" name="descricao" class="form-control" rows="4" maxlength="500"
+                    placeholder="Ex.: Vejo chamas na vegetação perto da entrada do parque e fumaça escura. Estou em um local seguro, longe do fogo."></textarea>
+          <div class="text-right rotulo-dir mt-1"><span id="contador">0</span>/500 caracteres</div>
+ 
+          <!-- Foto -->
+          <div class="d-flex justify-content-between mt-3 mb-2">
+            <span class="rotulo">Foto da ocorrência</span>
+            <span class="rotulo-dir">Opcional</span>
+          </div>
+          <label class="foto-box" for="foto">
+            <span class="foto-icone"><i class="fas fa-camera"></i></span>
+            <span class="flex-fill">
+              <strong class="d-block" style="font-size:.85rem" id="foto-titulo">Adicionar foto</strong>
+              <small class="text-muted-fogo" id="foto-detalhe">Somente se for seguro para você. Não se aproxime para fotografar.</small>
+            </span>
+            <i class="fas fa-plus"></i>
+          </label>
+          <input type="file" id="foto" name="foto" accept="image/jpeg,image/png,image/webp" class="d-none">
+ 
+          <div id="mensagem" class="alert d-none mt-3 mb-0" role="alert"></div>
+        </div>
+ 
+        <div class="card-footer px-4 py-3">
+          <div class="d-flex flex-wrap align-items-center justify-content-between">
+            <small class="text-muted-fogo mb-2 mb-sm-0">Confira a localização antes de enviar.</small>
+            <div>
+              <a href="Main.html" class="btn btn-claro mr-2">Voltar aos riscos</a>
+              <button type="submit" id="btn-enviar" class="btn btn-fogo"><i class="far fa-paper-plane mr-1"></i>Enviar relato</button>
+            </div>
+          </div>
+          <small class="d-block text-muted-fogo mt-3">Neste conceito, o envio é simulado. Nenhum relato é enviado aos serviços de emergência.</small>
+        </div>
+      </form>
+    </div>
+ 
+    <!-- COLUNA LATERAL -->
+    <aside class="col-lg-4">
+      <div class="card card-fogo mb-3">
+        <div class="card-body">
+          <div class="d-flex justify-content-between mb-2">
+            <span class="rotulo">Local do relato</span><span class="rotulo-dir">Ilustrativo</span>
+          </div>
+          <div id="mapa"></div>
+          <strong class="d-block mt-3" style="font-size:.85rem" id="lateral-nome">Nenhum local selecionado</strong>
+          <small class="text-muted-fogo">Use um ponto de referência visível de onde você está. Não vá até o foco.</small>
+        </div>
+      </div>
+ 
+      <div class="card card-fogo card-seguranca mb-3">
+        <div class="card-body d-flex">
+          <i class="fas fa-shield-alt mr-3 mt-1"></i>
+          <div>
+            <strong style="font-size:.9rem">Sua segurança vem primeiro</strong>
+            <p class="mb-0 mt-1" style="font-size:.8rem">Mantenha distância segura. Não tente apagar o fogo e não entre em áreas com fumaça.</p>
+          </div>
+        </div>
+      </div>
+ 
+      <div class="card card-fogo">
+        <div class="card-body">
+          <div class="d-flex align-items-center">
+            <span class="icone-emerg"><i class="fas fa-phone-alt"></i></span>
+            <div><strong>Emergência? Ligue 193.</strong><small class="d-block text-muted-fogo">Corpo de Bombeiros</small></div>
+          </div>
+          <hr>
+          <small class="text-muted-fogo">Relatos não substituem o contato com os bombeiros.</small>
+        </div>
+      </div>
+    </aside>
+  </div>
+    </main>
   <footer class="footer">
     <div class="footer-inner">
       <div class="footer-brand">
@@ -86,6 +232,140 @@
   <!-- JavaScript-->
   <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.slim.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+  <script>
+  const $ = (id) => document.getElementById(id);
+ 
+  // ---------- Mapa ----------
+  const mapa = L.map('mapa').setView([-14.24, -51.93], 4);
+  L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    maxZoom: 19, attribution: '&copy; OpenStreetMap'
+  }).addTo(mapa);
+ 
+  let marcador = null;
+  const ROTULOS = { mapa: 'Marcado no mapa', endereco: 'Endereço digitado', gps: 'Seu local (GPS)' };
+ 
+  function definirLocal(lat, lng, origem, nome) {
+    $('latitude').value = lat.toFixed(6);
+    $('longitude').value = lng.toFixed(6);
+    $('origem_local').value = origem;
+    $('rotulo-origem').textContent = ROTULOS[origem];
+ 
+    const rotulo = nome || `${lat.toFixed(5)}, ${lng.toFixed(5)}`;
+    $('local_nome').value = nome || '';
+    $('local-nome').textContent = rotulo;
+    $('lateral-nome').textContent = rotulo;
+    $('local-detalhe').textContent = `Coordenadas: ${lat.toFixed(5)}, ${lng.toFixed(5)}`;
+ 
+    if (marcador) marcador.setLatLng([lat, lng]);
+    else {
+      marcador = L.marker([lat, lng], { draggable: true }).addTo(mapa);
+      marcador.on('dragend', () => { const p = marcador.getLatLng(); localPorMapa(p.lat, p.lng); });
+    }
+  }
+ 
+  // clique/arraste no mapa: descobre o nome do lugar (geocodificação reversa)
+  async function localPorMapa(lat, lng) {
+    definirLocal(lat, lng, 'mapa');
+    try {
+      const r = await fetch(`https://nominatim.openstreetmap.org/reverse?format=json&zoom=17&lat=${lat}&lon=${lng}`,
+                            { headers: { 'Accept-Language': 'pt-BR' } });
+      const d = await r.json();
+      if (d.display_name) definirLocal(lat, lng, 'mapa', d.display_name.split(',').slice(0, 3).join(','));
+    } catch { /* mantém só as coordenadas */ }
+  }
+  mapa.on('click', (e) => localPorMapa(e.latlng.lat, e.latlng.lng));
+ 
+  // ---------- Endereço digitado ----------
+  $('btn-editar-local').addEventListener('click', () => {
+    $('busca-local').classList.toggle('d-none');
+    $('busca-endereco').focus();
+  });
+ 
+  async function buscarEndereco() {
+    const q = $('busca-endereco').value.trim();
+    if (!q) return;
+    try {
+      const r = await fetch('https://nominatim.openstreetmap.org/search?format=json&limit=1&countrycodes=br&q='
+                            + encodeURIComponent(q), { headers: { 'Accept-Language': 'pt-BR' } });
+      const d = await r.json();
+      if (!d.length) return mostrar('Endereço não encontrado. Tente marcar direto no mapa.', 'warning');
+      const lat = parseFloat(d[0].lat), lng = parseFloat(d[0].lon);
+      definirLocal(lat, lng, 'endereco', d[0].display_name.split(',').slice(0, 3).join(','));
+      mapa.setView([lat, lng], 16);
+      mostrar('');
+    } catch {
+      mostrar('Não foi possível buscar o endereço agora. Marque no mapa.', 'warning');
+    }
+  }
+  $('btn-buscar').addEventListener('click', buscarEndereco);
+  $('busca-endereco').addEventListener('keydown', (e) => { if (e.key === 'Enter') { e.preventDefault(); buscarEndereco(); } });
+ 
+  // ---------- GPS ----------
+  $('btn-gps').addEventListener('click', () => {
+    if (!navigator.geolocation) return mostrar('Seu navegador não suporta geolocalização.', 'warning');
+    navigator.geolocation.getCurrentPosition(
+      (p) => { definirLocal(p.coords.latitude, p.coords.longitude, 'gps'); mapa.setView([p.coords.latitude, p.coords.longitude], 16); mostrar(''); },
+      () => mostrar('Não foi possível obter seu local. Marque no mapa.', 'warning'),
+      { enableHighAccuracy: true, timeout: 10000 }
+    );
+  });
+ 
+  $('btn-ajustar').addEventListener('click', (e) => {
+    e.preventDefault();
+    $('mapa').scrollIntoView({ behavior: 'smooth', block: 'center' });
+    mostrar('Clique no mapa ou arraste o pino para ajustar o local.', 'info');
+  });
+ 
+  // ---------- Contador e foto ----------
+  $('descricao').addEventListener('input', (e) => { $('contador').textContent = e.target.value.length; });
+ 
+  $('foto').addEventListener('change', (e) => {
+    const f = e.target.files[0];
+    if (f && f.size > 10 * 1024 * 1024) {
+      e.target.value = '';
+      return mostrar('A foto deve ter no máximo 10 MB.', 'warning');
+    }
+    $('foto-titulo').textContent = f ? f.name : 'Adicionar foto';
+    $('foto-detalhe').textContent = f ? 'Foto selecionada.' : 'Somente se for seguro para você. Não se aproxime para fotografar.';
+  });
+ 
+  // ---------- Envio ----------
+  function mostrar(texto, tipo) {
+    const el = $('mensagem');
+    if (!texto) { el.className = 'alert d-none mt-3 mb-0'; return; }
+    el.className = `alert alert-${tipo} mt-3 mb-0`;
+    el.textContent = texto;
+  }
+ 
+  $('form-foco').addEventListener('submit', async (e) => {
+    e.preventDefault();
+    if (!$('latitude').value) return mostrar('Escolha a localização do relato.', 'warning');
+    if (!document.querySelector('input[name="tipo"]:checked')) return mostrar('Selecione o tipo de ocorrência.', 'warning');
+    if (!$('descricao').value.trim()) return mostrar('Descreva o que você observou.', 'warning');
+ 
+    const btn = $('btn-enviar');
+    btn.disabled = true;
+    try {
+      const resp = await fetch('/api/relatos', { method: 'POST', body: new FormData($('form-foco')) });
+      const json = await resp.json();
+      if (!resp.ok) throw new Error(json.erro || 'Erro ao enviar.');
+ 
+      mostrar('Relato enviado. Obrigado por avisar! Em caso de perigo, ligue 193.', 'success');
+      $('form-foco').reset();
+      $('contador').textContent = '0';
+      $('foto-titulo').textContent = 'Adicionar foto';
+      if (marcador) { mapa.removeLayer(marcador); marcador = null; }
+      $('local-nome').textContent = $('lateral-nome').textContent = 'Nenhum local selecionado';
+      $('local-detalhe').textContent = 'Digite um endereço, use seu local ou clique no mapa';
+    } catch (err) {
+      mostrar(err.message, 'danger');
+    } finally {
+      btn.disabled = false;
+    }
+  });
+</script>
    
 
 </body>
