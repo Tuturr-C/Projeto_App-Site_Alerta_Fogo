@@ -4,17 +4,15 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  
+
   <title>Desenvolvedores</title>
+  <!-- Biblioteca de Icones-->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
   <link rel="stylesheet" href="../css/Main.css">
 
-  <link rel = "stylesheet" href="../css/Desenvolvedores.css"/>
+  <link rel="stylesheet" href="../css/Desenvolvedores.css">
 </head>
-
-<!-- Biblioteca de Icones-->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 
 <body>
 <nav class="navbar navbar-expand-lg fixed-top">
@@ -34,12 +32,176 @@
           <li class="nav-item"><a class="nav-link" href="Main.html"><i class="fa-regular fa-map mr-1"></i>Riscos Próximos</a></li>
           <li class="nav-item"><a class="nav-link" href="Informar_Foco.html"><i class="fa-solid fa-plus mr-1"></i>Informar Foco</a></li>
           <li class="nav-item"><a class="nav-link" href="Orientacoes.html"><i class="fa-solid fa-shield-halved mr-1"></i>Orientações</a></li>
-          <li class="nav-item"><a class="nav-link" href="tel:193"><i class="fa-solid fa-phone mr-1"></i>Emergência 193</a></li>
+          <li class="nav-item"><a class="nav-link" href="tel:193"><i class="fa-solid fa-phone mr-1"></i>Emergência193</a></li>
           <li class="nav-item"><a class="nav-link active" href="Desenvolvedores.html"><i class="fa-solid fa-code mr-1"></i>Desenvolvedores</a></li>
         </ul>
       </div>
     </div>
   </nav>
+
+  <main class="dev-page">
+
+    <!-- Cabeçalho da página -->
+    <header class="dev-hero">
+      <span class="dev-selo"><i class="fa-solid fa-code" aria-hidden="true"></i> Desenvolvedores</span>
+      <h1>A equipe por trás do Alerta Fogo</h1>
+      <p>Conheça quem está construindo a plataforma, o que cada pessoa desenvolve e as tecnologias usadas no projeto.</p>
+    </header>
+
+    <!-- Sobre o projeto -->
+    <section class="dev-secao" aria-labelledby="ttl-sobre">
+      <div class="dev-sobre">
+        <div class="dev-sobre-texto">
+          <h2 id="ttl-sobre">Sobre o projeto</h2>
+          <p>O Alerta Fogo é uma plataforma criada para avisar a população sobre incêndios iminentes dentro da cidade de Campinas.</p>
+          <p>A ideia é reunir em um só lugar o mapa de riscos próximos, o registro de novos focos e orientações de segurança para agir rápido em uma emergência.</p>
+        </div>
+
+        <dl class="dev-fatos">
+          <div class="dev-fato">
+            <dt>Cidade</dt>
+            <dd>Campinas</dd>
+          </div>
+          <div class="dev-fato">
+            <dt>Situação</dt>
+            <dd>Em desenvolvimento</dd>
+          </div>
+          <div class="dev-fato">
+            <dt>Primeira versão prevista</dt>
+            <dd>04/12/2026</dd>
+          </div>
+        </dl>
+      </div>
+    </section>
+
+    <!-- Equipe -->
+    <section class="dev-secao" aria-labelledby="ttl-equipe">
+      <div class="dev-secao-topo">
+        <h2 id="ttl-equipe">Equipe</h2>
+        <p>Cada integrante é responsável por uma parte do projeto.</p>
+      </div>
+
+      <div class="equipe-grid">
+        <article class="dev-card">
+          <div class="dev-avatar" aria-hidden="true">AG</div>
+          <h3>Arthur Henrique Silva Gerotto</h3>
+          <ul class="dev-funcoes">
+            <li><i class="fa-brands fa-html5" aria-hidden="true"></i>HTML <small>Riscos Próximos</small></li>
+            <li><i class="fa-brands fa-js" aria-hidden="true"></i>JavaScript <small>Riscos Próximos</small></li>
+            <li><i class="fa-brands fa-css3-alt" aria-hidden="true"></i>CSS <small>Geral</small></li>
+          </ul>
+        </article>
+
+        <article class="dev-card">
+          <div class="dev-avatar" aria-hidden="true">MS</div>
+          <h3>Matheus Balbine Simões</h3>
+          <ul class="dev-funcoes">
+            <li><i class="fa-brands fa-html5" aria-hidden="true"></i>HTML <small>Riscos Próximos</small></li>
+            <li><i class="fa-brands fa-css3-alt" aria-hidden="true"></i>CSS <small>Geral</small></li>
+          </ul>
+        </article>
+
+        <article class="dev-card">
+          <div class="dev-avatar" aria-hidden="true">RS</div>
+          <h3>Raquel Rubio de Souza</h3>
+          <ul class="dev-funcoes">
+            <li><i class="fa-solid fa-server" aria-hidden="true"></i>API <small>Geral</small></li>
+            <li><i class="fa-solid fa-magnifying-glass-chart" aria-hidden="true"></i>Pesquisa de mercado <small>Geral</small></li>
+          </ul>
+        </article>
+
+        <article class="dev-card">
+          <div class="dev-avatar" aria-hidden="true">SJ</div>
+          <h3>Sophia Batista Joriatti</h3>
+          <ul class="dev-funcoes">
+            <li><i class="fa-brands fa-html5" aria-hidden="true"></i>HTML <small>Informar Foco</small></li>
+            <li><i class="fa-brands fa-css3-alt" aria-hidden="true"></i>CSS <small>Informar Foco</small></li>
+            <li><i class="fa-solid fa-database" aria-hidden="true"></i>Banco de dados <small>Informar Foco</small></li>
+          </ul>
+        </article>
+
+        <article class="dev-card">
+          <div class="dev-avatar" aria-hidden="true">JM</div>
+          <h3>Júlia Tiemi Muramoto</h3>
+          <ul class="dev-funcoes">
+            <li><i class="fa-brands fa-html5" aria-hidden="true"></i>HTML <small>Desenvolvedores e Orientações</small></li>
+            <li><i class="fa-brands fa-css3-alt" aria-hidden="true"></i>CSS <small>Desenvolvedores e Orientações</small></li>
+          </ul>
+        </article>
+      </div>
+    </section>
+
+    <!-- Tecnologias -->
+    <section class="dev-secao" aria-labelledby="ttl-tecnologias">
+      <div class="dev-secao-topo">
+        <h2 id="ttl-tecnologias">Tecnologias</h2>
+        <p>Ferramentas usadas na construção do site.</p>
+      </div>
+
+      <ul class="tec-grid">
+        <li class="tec-item">
+          <i class="fa-brands fa-html5" aria-hidden="true"></i>
+          <strong>HTML5</strong>
+          <span>Estrutura das páginas</span>
+        </li>
+        <li class="tec-item">
+          <i class="fa-brands fa-css3-alt" aria-hidden="true"></i>
+          <strong>CSS3</strong>
+          <span>Estilo e responsividade</span>
+        </li>
+        <li class="tec-item">
+          <i class="fa-brands fa-js" aria-hidden="true"></i>
+          <strong>JavaScript</strong>
+          <span>Mapa e interações</span>
+        </li>
+        <li class="tec-item">
+          <i class="fa-brands fa-bootstrap" aria-hidden="true"></i>
+          <strong>Bootstrap</strong>
+          <span>Layout e navegação</span>
+        </li>
+        <li class="tec-item">
+          <i class="fa-solid fa-map-location-dot" aria-hidden="true"></i>
+          <strong>Leaflet</strong>
+          <span>Mapa de riscos</span>
+        </li>
+        <li class="tec-item">
+          <i class="fa-solid fa-database" aria-hidden="true"></i>
+          <strong>MySQL</strong>
+          <span>Banco de dados</span>
+        </li>
+      </ul>
+    </section>
+
+    <!-- Protótipo e repositório -->
+    <section class="dev-secao" aria-labelledby="ttl-links">
+      <div class="dev-secao-topo">
+        <h2 id="ttl-links">Protótipo e código</h2>
+        <p>Acompanhe o planejamento e o andamento do projeto.</p>
+      </div>
+
+      <div class="dev-links">
+        <a class="dev-link-card" href="https://www.figma.com/design/HrHzpJbnl8Zfj18xfcN5tD/Sem-t%C3%ADtulo?node-id=0-1&amp;t=r6co2pmuehQL5kAJ-1" target="_blank" rel="noopener noreferrer">
+          <div class="dev-link-icone"><i class="fa-brands fa-figma" aria-hidden="true"></i></div>
+          <div class="dev-link-texto">
+            <strong>Protótipo no Figma</strong>
+            <span>Veja o design planejado para as telas.</span>
+          </div>
+          <i class="fa-solid fa-arrow-up-right-from-square dev-link-seta" aria-hidden="true"></i>
+        </a>
+
+        <a class="dev-link-card" href="https://github.com/Tuturr-C/Projeto_App-Site_Alerta_Fogo" target="_blank" rel="noopener noreferrer">
+          <div class="dev-link-icone"><i class="fa-brands fa-github" aria-hidden="true"></i></div>
+          <div class="dev-link-texto">
+            <strong>Repositório no GitHub</strong>
+            <span>Acompanhe o código e as atualizações.</span>
+          </div>
+          <i class="fa-solid fa-arrow-up-right-from-square dev-link-seta" aria-hidden="true"></i>
+        </a>
+      </div>
+    </section>
+
+  </main>
+
   <footer class="footer">
     <div class="footer-inner">
       <div class="footer-brand">
@@ -63,8 +225,8 @@
       <div class="footer-links">
         <h4>Contato</h4>
         <a href="mailto:suporte@alertafogo.com.br">suporte@alertafogo.com.br</a>
-        <a href="tel:193">Emergência: 193</a>
-        <a href="tel:+551112345678">(11) 1234-5678</a>
+        <a href="tel:193">Emergência:193</a>
+        <a href="tel:+551112345678">(11)12345678</a>
       </div>
 
       <div class="footer-subscribe">
@@ -81,10 +243,10 @@
       © 2026 Alerta Fogo. Todos os direitos reservados.
     </div>
   </footer>
-    
+
   <!-- JavaScript-->
   <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.slim.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
-  
+
 </body>
 </html>
