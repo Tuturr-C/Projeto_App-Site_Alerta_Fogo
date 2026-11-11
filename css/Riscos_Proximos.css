@@ -160,6 +160,10 @@
     font-weight: 700;
 }
 
+/*Animação de pulsar para o pin do mapa( irei alterar dps)*/
+.area-pulsa { animation: pulsa 1.6s ease-in-out infinite; }
+@keyframes pulsa { 50% { fill-opacity: 0.12; } }
+
 .painel-lateral {
     display: grid;
     gap: 18px;

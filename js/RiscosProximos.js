@@ -119,3 +119,48 @@ mapa.on("locationerror", function () {
     alert("Não foi possível obter sua localização.");
     pararRastreio();
 });
+
+
+
+//VOU MUDAR DPS ( EXEMPLOS DE AREAS DE INCENDIO MAIORES, SÓ FIZ ATÉ AGR OS POLIGONOS DPS VOU ACERTAR COM O BANCO DE DADOS)
+var estiloArea = {
+    alto: {color:"#b3361f", fillColor:"#e63946", fillOpacity: 0.35, weight: 2},
+    moderado: {color:"#8a6a12", fillColor: "e9a23b", fillOpacity: 0.30, weight: 2},
+    baixo: {color:"3f6b3a", fillColor:"#6a994e", fillOpacity: 0.25, weight: 2}
+
+};
+
+var areas= [
+    {
+        tipo: "poligono", nivel:"alto",
+        titulo: "incêncio florestal", local: "Mata ao Norte",
+        pontos: [[-22.880, -47.020], [-22.890, -47.010], [-22.900, -47.020], [-22.890, -47.030]]
+    },
+    {
+        tipo: "circulo", nivel: "baixo",
+        titulo: "Foco controlado", local: "Região Sul",
+        centro: [-22.970, -47.030], raio: 600
+    },
+    {
+        tipo: "retangulo", nivel: "moderado",
+        titulo: "Queimada em pasto", local: "Região Oeste",
+        limites: [[-22.945, -47.115], [-22.935, -47.105]] 
+    }
+
+];
+
+areas.forEach(function (ar) {
+    var forma;
+
+    if (ar.tipo === "retangulo") {
+        forma = L.rectangle(ar.limites, estiloArea[ar.nivel]);
+    } else if (ar.tipo === "circulo") {
+        forma = L.circle(ar.centro, Object.assign({ radius: ar.raio }, estiloArea[ar.nivel]));
+    } else {
+        forma = L.polygon(ar.pontos, estiloArea[ar.nivel]);
+    }
+
+    forma.addTo(camadaAreas)
+         .bindPopup("<strong>" + ar.titulo + "</strong><br>" + ar.local + "<br>Nível: " + ar.nivel);
+});
+    
