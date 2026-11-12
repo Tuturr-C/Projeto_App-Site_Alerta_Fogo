@@ -125,8 +125,8 @@ mapa.on("locationerror", function () {
 //VOU MUDAR DPS ( EXEMPLOS DE AREAS DE INCENDIO MAIORES, SÓ FIZ ATÉ AGR OS POLIGONOS DPS VOU ACERTAR COM O BANCO DE DADOS)
 var estiloArea = {
     alto: {color:"#b3361f", fillColor:"#e63946", fillOpacity: 0.35, weight: 2},
-    moderado: {color:"#8a6a12", fillColor: "e9a23b", fillOpacity: 0.30, weight: 2},
-    baixo: {color:"3f6b3a", fillColor:"#6a994e", fillOpacity: 0.25, weight: 2}
+    moderado: {color:"#8a6a12", fillColor: "#e9a23b", fillOpacity: 0.30, weight: 2},
+    baixo: {color:"#3f6b3a", fillColor:"#6a994e", fillOpacity: 0.25, weight: 2}
 
 };
 
@@ -148,6 +148,8 @@ var areas= [
     }
 
 ];
+
+var camadaAreas = L.layerGroup().addTo(mapa);
 
 areas.forEach(function (ar) {
     var forma;
