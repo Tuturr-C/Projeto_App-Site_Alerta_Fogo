@@ -15,7 +15,8 @@
 
 </head>
 <body>
-    <header>
+
+  <header>
   <nav class="navbar navbar-expand-lg fixed-top">
     <div class="container-fluid">
       <a class="navbar-brand" href="Main.html">
@@ -47,6 +48,8 @@
         <strong>Localização aproximada:</strong>
         <span id="local-texto">Identificando...</span>
         <span class="faixa-detalhe" id="local-detalhe"></span>
+        <span id="ultima-atualizacao"></span>
+        <span id="aviso-novos"></span>
   </div>
 
   
@@ -73,35 +76,35 @@
         <div id="mapa"></div>
     </div>
 
-    <div class="mapa-card-footer">
-            <div class="legenda">
+    <footer class="mapa-card-footer">
+            <span class="legenda">
                 <span>Risco:</span>
                 <span class="tag tag-baixo">Baixo</span>
                 <span class="tag tag-moderado">Moderado</span>
                 <span class="tag tag-alto">Alto</span>
-            </div>
+            </span>
             <span class="legenda-foco"><i class="fa-solid fa-fire"></i> Foco de incendio</span>
-        </div>
-            </div>
+        </footer>
+    </div>
 
             <aside class="painel-lateral" aria-label="Resumo dos riscos próximos">
-                <div class="risco-resumo">
-                    <div class="resumo-topo">
+                <article class="risco-resumo">
+                    <header class="resumo-topo">
                         <span>CAMPINAS (REGIÃO ILUSTRATIVA)</span>
                         <strong><i class="fa-solid fa-circle"></i> RISCO ALTO</strong>
-                    </div>
+                    </header>
                     <h3>Atenção redobrada hoje</h3>
                     <p>Tempo seco e vento favorecem o fogo. Evite queimadas e mantenha distância dos focos.</p>
-                </div>
+                </article>
 
-                <div class="alertas-bloco">
-                    <div class="painel-titulo">
-                        <h3>Alertas próximos (Exemplos)</h3>
+                <section class="alertas-bloco" aria-labelledby="titulo-alertas">
+                    <header class="painel-titulo">
+                        <h3 id="titulo-alertas">Alertas próximos (Exemplos)</h3>
                         <span>2 exemplos fictícios</span>
-                    </div>
+                    </header>
 
                     <article class="alerta-item">
-                        <div class="alerta-icone"><i class="fa-solid fa-fire-flame-curved"></i></div>
+                        <span class="alerta-icone"><i class="fa-solid fa-fire-flame-curved"></i></span>
                         <div class="alerta-conteudo">
                             <strong>Foco A · Jardim Ipê</strong>
                             <span>Vegetação · a 1,2 km (exemplo)</span>
@@ -111,7 +114,7 @@
                     </article>
 
                     <article class="alerta-item">
-                        <div class="alerta-icone"><i class="fa-solid fa-fire-flame-curved"></i></div>
+                        <span class="alerta-icone"><i class="fa-solid fa-fire-flame-curved"></i></span>
                         <div class="alerta-conteudo">
                             <strong>Foco B · Parque do Lago</strong>
                             <span>Fumaça · a 2,4 km (exemplo)</span>
@@ -123,7 +126,7 @@
                     <a class="botao-foco" href="Informar_Foco.html">
                         <i class="fa-solid fa-plus"></i> Informar foco de incêndio
                     </a>
-                </div>
+                </section>
             </aside>
         </div>
 </section>
@@ -173,18 +176,16 @@
         </div>
     </footer>
 
+    <!--JS-->
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+        integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+        crossorigin=""></script>
 
-    <!-- JavaScript-->
-     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
-    integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
-    crossorigin=""></script>
-    
-    <script src="../js/api_inpe.js"></script>
-    <script src="../js/RiscosProximos.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
+<script src="../js/API_Inpe.js"></script>
+<script src="../js/RiscosProximos.js"></script>
 
-
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
 
     </body>
 </html>

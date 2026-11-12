@@ -15,7 +15,7 @@ function montarUrl(lonMin, latMin, lonMax, latMax) {
 }
 
 function buscarFocos() {
-    var url = montarUrl(-47.295277, -23.125570, -46.717627, -22.684889);   // região de Campinas
+    var url = montarUrl(-47.295277, -23.125570, -46.717627, -22.684889);  // Região de Campinas
 
 
     return fetch(url)
@@ -29,6 +29,83 @@ function buscarFocos() {
             return geojson.features;
         });
 }
+
+
+function valido(n) {
+        return !isNaN(n) && n >= 0;       
+    }
+
+    function nivelDoFoco(p) {
+        var risco = Number(p.risco_fogo);
+        if (valido(risco)) {
+            if (risco >= 0.7) return "alto";
+            if (risco >= 0.4) return "moderado";
+            return "baixo";
+        }
+        var frp = Number(p.frp);
+        var secos = Number(p.numero_dias_sem_chuva);
+        var pontos = 0;
+        if (valido(frp))   pontos += frp >= 50 ? 2 : (frp >= 15 ? 1 : 0);
+        if (valido(secos)) pontos += secos >= 10 ? 2 : (secos >= 4 ? 1 : 0);
+        if (pontos >= 3) return "alto";
+        if (pontos >= 1) return "moderado";
+        return "baixo";
+    }
+
+    function popupFoco(p) {
+        var quando = new Date(p.data_hora_gmt).toLocaleString("pt-BR", {
+            timeZone: "America/Sao_Paulo", dateStyle: "short", timeStyle: "short"
+        });
+        var horas = Math.round((Date.now() - new Date(p.data_hora_gmt)) / 3600000);
+        var cidade = (p.municipio || "").toLowerCase().replace(/(^|\s)\S/g, function (l) { return l.toUpperCase(); });
+
+        return "<strong>Foco de calor detectado</strong><br>" + cidade + "<br>" +
+            quando + " (há " + horas + " h)<br>" +
+            "Satélite: " + p.satelite + "<br>" +
+            (valido(Number(p.frp)) ? "Intensidade (FRP): " + p.frp + " MW<br>" : "") +
+            "<small>Fonte: INPE Queimadas</small>";
+    }
+
+
+     function desenharFocos(features) {
+        camadaFocos.clearLayers();
+        L.geoJSON(features, {
+            pointToLayer: function (feature, latlng) {
+                return L.marker(latlng, { icon: criarIcone(nivelDoFoco(feature.properties)) });
+            },
+            onEachFeature: function (feature, layer) {
+                layer.bindPopup(popupFoco(feature.properties));
+            }
+        }).addTo(camadaFocos);
+    }
+
+    function desenharAreas(features, enquadrar) {
+        zonas.clearLayers();
+        features.forEach(function (f) {
+            var lat = f.geometry.coordinates[1];  
+            var lng = f.geometry.coordinates[0];
+            var nivel = nivelDoFoco(f.properties);
+
+            L.circle([lat, lng], Object.assign({ radius: 500 }, estiloArea[nivel]))
+                .bindPopup(popupFoco(f.properties))
+                .addTo(zonas);
+        });
+        if (enquadrar && zonas.getLayers().length) {
+            mapa.fitBounds(zonas.getBounds(), { maxZoom: 12 });
+        }
+    }
+
+    function featuresParaAlertas(features) {
+        return features.map(function (f) {
+            return {
+                lat: f.geometry.coordinates[1],
+                lng: f.geometry.coordinates[0],
+                nivel: nivelDoFoco(f.properties),
+                titulo: "Foco de calor (satélite)",
+                local: f.properties.municipio || ""
+            };
+        });
+    }
 
 //TESTE APENAS
 buscarFocos()
