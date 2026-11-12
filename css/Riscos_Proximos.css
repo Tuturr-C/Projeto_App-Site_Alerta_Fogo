@@ -1,9 +1,34 @@
 
+/*Faixa Em baixo da navbar de localização*/
+.faixa-local {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 6px 10px;
+    padding: 9px 24px;
+    background: #e6eee1;
+    color: #22362f;
+    font-size: 13px;
+}
+
+.faixa-local[hidden] {
+    display: none;          
+}
+
+.faixa-local i {
+    color: #3f6b3a;
+}
+
+.faixa-detalhe {
+    color: #6b7a73;
+    font-size: 12px;
+}
+
+
 .risco-section {
     width: min(1280px, 100%);
     margin: 0 auto;
     padding: 28px 24px 40px;
-    box-sizing: border-box;
 }
 
 .risco-section > h2 {
@@ -13,7 +38,7 @@
 
 .risco-section > p {
     margin: 0 0 18px;
-    color: #66736b;
+    color: var(--cor-segundaria);
 }
 
 .riscos-layout {
@@ -25,11 +50,10 @@
 
 
 .mapa-card {
-    background: #fff;
+    background: var(--cor-superficie);
     border-radius: 18px;
     padding: 16px;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
-    box-sizing: border-box;
     width: 100%;
     margin: 0;
 }
@@ -37,6 +61,7 @@
 
 .mapa-card-header {
     display: flex;
+    flex-wrap: wrap;
     align-items: center;
     justify-content: space-between;
     gap: 12px;
@@ -51,6 +76,25 @@
 .mapa-raio {
     font-size: 13px;
     color: #6b7a73;
+}
+
+.btn-localizar {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 14px;
+    border: 0;
+    border-radius: 999px;
+    background: #22362f;
+    color: #fff;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.btn-localizar:hover,
+.btn-localizar:focus-visible {
+    background: #2f4a40;
 }
 
 
@@ -76,9 +120,14 @@
     justify-content: center;
     border-radius: 50%;
     background: #e63946;
-    color: #fff;
+    color: var(--cor-superficie);
     box-shadow: 0 2px 6px rgba(0, 0, 0, 0.35);
 }
+
+
+.pin-baixo    { background: #6a994e; }
+.pin-moderado { background: #e9a23b; }
+.pin-alto     { background: #e63946; }
 
 .mapa-card-footer {
     display: flex;
@@ -111,6 +160,10 @@
     font-weight: 700;
 }
 
+/*Animação de pulsar para o pin do mapa( irei alterar dps)*/
+.area-pulsa { animation: pulsa 1.6s ease-in-out infinite; }
+@keyframes pulsa { 50% { fill-opacity: 0.12; } }
+
 .painel-lateral {
     display: grid;
     gap: 18px;
@@ -120,7 +173,7 @@
     padding: 24px 20px 20px;
     border-radius: 16px;
     background: #fff0e8;
-    color: #c94313;
+    color: var(--cor-nav);
 }
 
 .resumo-topo {
@@ -176,7 +229,7 @@
     gap: 10px;
     padding: 11px;
     margin-bottom: 9px;
-    background: #fff;
+    background: var(--cor-superficie);
     border: 1px solid #dfe5df;
     border-radius: 11px;
 }
@@ -211,7 +264,7 @@
 .tag-atencao {
     width: fit-content;
     background: #fff0e8;
-    color: #c94313;
+    color: var(--cor-nav);
 }
 
 .botao-foco {
@@ -222,8 +275,8 @@
     width: 100%;
     padding: 12px 16px;
     border-radius: 10px;
-    background: #c94313;
-    color: #fff;
+    background: var(--cor-nav);
+    color: var(--cor-superficie);
     font-size: 12px;
     font-weight: 700;
     text-decoration: none;
@@ -232,7 +285,7 @@
 .botao-foco:hover,
 .botao-foco:focus-visible {
     background: #a93610;
-    color: #fff;
+    color: var(--cor-superficie);
     text-decoration: none;
 }
 
@@ -265,5 +318,3 @@
     .mapa-ilustrativa { height: 320px; }
     .mapa-card-header { flex-direction: column; align-items: flex-start; }
 }
-
-

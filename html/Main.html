@@ -15,7 +15,7 @@
 
 </head>
 <body>
-
+    <header>
   <nav class="navbar navbar-expand-lg fixed-top">
     <div class="container-fluid">
       <a class="navbar-brand" href="Main.html">
@@ -39,17 +39,33 @@
       </div>
     </div>
   </nav>
+  </header>
+
+
+  <div class="faixa-local" id="faixa-local" role="status" aria-live="polite" hidden>
+        <i class="fa-solid fa-location-dot"></i>
+        <strong>Localização aproximada:</strong>
+        <span id="local-texto">Identificando...</span>
+        <span class="faixa-detalhe" id="local-detalhe"></span>
+  </div>
+
+  
 
    <section id="riscos-proximos" class="risco-section" aria-labelledby="ttl-riscos-proximos">
     <h2 id="ttl-riscos-proximos">Riscos Próximos</h2>
     <p>Entenda o risco na sua região e acompanhe os alertas ao redor com segurança</p>
     
 
-    <div class="riscos-layout">
-      <div class="mapa-card">
+   <div class="riscos-layout">
+    <div class="mapa-card">
+
         <div class="mapa-card-header">
             <h3 class="titulo"><i class="fa-regular fa-map"></i> Perto de você</h3>
             <span class="mapa-raio">Raio ilustrativo: 5 km</span>
+
+            <button type="button" id="btn-localizar" class="btn-localizar">
+                <i class="fa-solid fa-location-crosshairs"></i> Usar minha localização
+            </button>
         </div>
 
     <!-- Mapa da região de Campinas -->
@@ -163,6 +179,7 @@
     integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
     crossorigin=""></script>
     
+    <script src="../js/api_inpe.js"></script>
     <script src="../js/RiscosProximos.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
