@@ -13,10 +13,13 @@ var estiloArea = {
     baixo:    { color: "#3f6b3a", fillColor: "#6a994e", fillOpacity: 0.25, weight: 2 }
 };
 
-var alertas = [];
+var alertasInpe = [];
+var alertasRelatos = [];
 var camadaFocos = L.layerGroup().addTo(mapa);      
 var zonas = L.featureGroup().addTo(mapa);       
-var camadaAreas = L.layerGroup().addTo(mapa);       
+var camadaAreas = L.layerGroup().addTo(mapa);
+
+
 function criarIcone(nivel) {
     return L.divIcon({
         className: "pin-fogo pin-" + nivel,
@@ -106,6 +109,8 @@ function atualizarNomeLocal(pos) {
 }
 
 function pararRastreio() {
+    posicaoUsuario = null;                  
+    renderizarLista();
     mapa.stopLocate();
     rastreando = false;
     primeiraVez = true;
@@ -129,6 +134,9 @@ if (botao) {
 
 mapa.on("locationfound", function (e) {
     if (faixa) faixa.hidden = false;
+
+    posicaoUsuario = e.latlng;                
+      renderizarListaSuave();
 
     if (!pontoUsuario) {
         pontoUsuario = L.circleMarker(e.latlng, {
@@ -170,7 +178,8 @@ function atualizarFocos() {
 
             desenharFocos(features);
             desenharAreas(features, primeiraCarga);
-            alertas = featuresParaAlertas(features);
+            alertasInpe = featuresParaAlertas(features);
+            renderizarLista();
 
             var novos = idsVistos
                 ? features.filter(function (f) { return !idsVistos.has(f.properties.foco_id); })
@@ -203,3 +212,140 @@ document.addEventListener("visibilitychange", function () {
         atualizarFocos();
     }
 });
+
+
+function desenharRelatos(relatos) {
+    camadaRelatos.clearLayers();
+    var validos = relatos.filter(relatoValido);
+
+    validos.forEach(function (r) {
+        var pin = L.marker([r.lat, r.lng], { icon: criarIconeRelato(r.tipo, r.nivel) })
+            .bindPopup(popupRelato(r))
+            .addTo(camadaRelatos);
+        marcadoresPorId["rel-" + r.id] = pin;
+    });
+
+    alertasRelatos = validos.map(function (r) {
+        var t = TIPOS[r.tipo] || TIPOS.outro;
+        return {
+            id: "rel-" + r.id,
+            origem: r.exemplo ? "exemplo" : "usuario",
+            tipo: r.tipo,
+            nivel: r.nivel,
+            lat: r.lat,
+            lng: r.lng,
+            titulo: t.rotulo,
+            local: r.local || "",
+            detalhe: t.rotulo,
+            criadoEm: r.criadoEm
+        };
+    });
+
+    renderizarLista();
+}
+
+
+var marcadoresPorId = {};          
+var posicaoUsuario = null;
+var LIMITE_LISTA = 8;              
+var PESO_NIVEL = { alto: 3, moderado: 2, baixo: 1 };
+var NIVEIS = { alto: "Alto", moderado: "Moderado", baixo: "Baixo" };
+var TIPOS = {
+    calor: { rotulo: "Foco de calor", icone: "fa-fire-flame-curved" },
+    outro: { rotulo: "Alerta", icone: "fa-triangle-exclamation" }
+};
+var ROTULO_ORIGEM = { inpe: "Fonte: INPE", usuario: "Relato de usuário", exemplo: "Exemplo fictício" };
+
+function escaparHtml(valor) {
+    return String(valor == null ? "" : valor).replace(/[&<>"']/g, function (caractere) {
+        return {
+            "&": "&amp;",
+            "<": "&lt;",
+            ">": "&gt;",
+            '"': "&quot;",
+            "'": "&#39;"
+        }[caractere];
+    });
+}
+
+function formatarDistancia(m) {
+    if (m < 1000) return Math.round(m) + " m";
+    return (m / 1000).toFixed(1).replace(".", ",") + " km";
+}
+
+function ordenarAlertas(lista) {
+    if (posicaoUsuario) {
+        
+        lista.forEach(function (a) { a.distancia = mapa.distance(posicaoUsuario, [a.lat, a.lng]); });
+        lista.sort(function (a, b) { return a.distancia - b.distancia; });
+    } else {
+        
+        lista.sort(function (a, b) {
+            return (PESO_NIVEL[b.nivel] - PESO_NIVEL[a.nivel]) ||
+                   (new Date(b.criadoEm) - new Date(a.criadoEm));
+        });
+    }
+    return lista;
+}
+
+function renderizarLista() {
+    var caixa = document.getElementById("lista-alertas");
+    if (!caixa) return;
+
+    var lista = ordenarAlertas(alertasInpe.concat(alertasRelatos));
+    var visiveis = lista.slice(0, LIMITE_LISTA);
+
+    escrever("contador-alertas", lista.length + (lista.length === 1 ? " alerta" : " alertas"));
+    escrever("lista-dica", posicaoUsuario
+        ? "Ordenados do mais perto para o mais longe"
+        : "Ative sua localização para ordenar por distância");
+
+    if (!visiveis.length) {
+        caixa.innerHTML = '<p class="lista-vazia">Nenhum alerta informado nas últimas 48 h. ' +
+                          'Isso não garante que não haja fogo na região. Em emergência, ligue 193.</p>';
+        return;
+    }
+
+    caixa.innerHTML = visiveis.map(function (a) {
+        var t = TIPOS[a.tipo] || TIPOS.outro;
+        var dist = posicaoUsuario ? " • a " + formatarDistancia(a.distancia) : "";
+
+        return '<article class="alerta-item" data-id="' + escaparHtml(a.id) + '" tabindex="0" role="button">' +
+                   '<span class="alerta-icone"><i class="fa-solid ' + t.icone + '"></i></span>' +
+                   '<div class="alerta-conteudo">' +
+                       '<strong>' + escaparHtml(a.titulo) + (a.local ? " · " + escaparHtml(a.local) : "") + '</strong>' +
+                       '<span>' + escaparHtml(a.detalhe || t.rotulo) + dist + '</span>' +
+                       '<small class="tag tag-' + a.nivel + '">' + NIVEIS[a.nivel] + '</small>' +
+                   '</div>' +
+                   '<small>' + ROTULO_ORIGEM[a.origem] + '</small>' +
+               '</article>';
+    }).join("");
+}
+
+
+var ultimoRender = 0;
+function renderizarListaSuave() {
+    if (Date.now() - ultimoRender < 5000) return;
+    ultimoRender = Date.now();
+    renderizarLista();
+}
+
+
+function abrirAlerta(card) {
+    var pin = marcadoresPorId[card.getAttribute("data-id")];
+    if (!pin) return;
+    mapa.flyTo(pin.getLatLng(), 14);
+    pin.openPopup();
+}
+
+var caixaLista = document.getElementById("lista-alertas");
+if (caixaLista) {
+    caixaLista.addEventListener("click", function (ev) {
+        var card = ev.target.closest(".alerta-item");
+        if (card) abrirAlerta(card);
+    });
+    caixaLista.addEventListener("keydown", function (ev) {
+        var card = ev.target.closest(".alerta-item");
+        if (card && ev.key === "Enter") abrirAlerta(card);
+    });
+}

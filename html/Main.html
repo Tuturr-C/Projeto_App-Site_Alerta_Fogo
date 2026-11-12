@@ -97,36 +97,20 @@
                     <p>Tempo seco e vento favorecem o fogo. Evite queimadas e mantenha distância dos focos.</p>
                 </article>
 
-                <section class="alertas-bloco" aria-labelledby="titulo-alertas">
+               <section class="alertas-bloco" aria-labelledby="titulo-alertas">
                     <header class="painel-titulo">
-                        <h3 id="titulo-alertas">Alertas próximos (Exemplos)</h3>
-                        <span>2 exemplos fictícios</span>
+                       <h3 id="titulo-alertas">Alertas próximos</h3>
+                        <span id="contador-alertas"></span>
                     </header>
+                   <p class="lista-dica" id="lista-dica"></p>
 
-                    <article class="alerta-item">
-                        <span class="alerta-icone"><i class="fa-solid fa-fire-flame-curved"></i></span>
-                        <div class="alerta-conteudo">
-                            <strong>Foco A · Jardim Ipê</strong>
-                            <span>Vegetação · a 1,2 km (exemplo)</span>
-                            <small class="tag tag-alto">Alto</small>
-                        </div>
-                        <small>Exemplo fictício</small>
-                    </article>
-
-                    <article class="alerta-item">
-                        <span class="alerta-icone"><i class="fa-solid fa-fire-flame-curved"></i></span>
-                        <div class="alerta-conteudo">
-                            <strong>Foco B · Parque do Lago</strong>
-                            <span>Fumaça · a 2,4 km (exemplo)</span>
-                            <small class="tag tag-atencao">Atenção</small>
-                        </div>
-                        <small>Exemplo fictício</small>
-                    </article>
-
-                    <a class="botao-foco" href="Informar_Foco.html">
-                        <i class="fa-solid fa-plus"></i> Informar foco de incêndio
-                    </a>
+                   <div id="lista-alertas" aria-live="polite">
+                       <p class="lista-vazia">Carregando alertas...</p>
+                   </div>
                 </section>
+               <a class="botao-foco" href="Informar_Foco.html">
+                   <i class="fa-solid fa-plus"></i> Informar foco de incêndio
+               </a>
             </aside>
         </div>
 </section>
