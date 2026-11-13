@@ -1,5 +1,5 @@
 @font-face {
-    font-family: 'Inter', sans-serif;
+    font-family: 'Inter';
     src: url('../fonts/Inter-VariableFont_opsz,wght.ttf') format('truetype');
     font-style: normal;
     font-weight: 100 900;
@@ -8,10 +8,161 @@
 
 
 :root {
-    --cor-primaria: #243831;
-    --cor-superficie: #FFFFFF;
-    --cor-segundaria: #66736B;
-    --cor-fundo: #DEE4DC;
-    --cor-nav: #C94313;
-    --cor-navbar:#fff;
+   --verde: var(--cor-primaria);
+   --fundo: var(--cor-fundo);
+   --faixa: var(--cor-fundo);
+   --destaque: var(--cor-nav);
+   --destaque-claro: #FDEBDD;
+   --borda: #E2E5DD;
 }
+   .text-muted-fogo { 
+    color: var(--cor-segundaria);
+     }
+ /* cards */
+    .card-fogo { 
+        border: 1px solid var(--borda);
+         border-radius: 12px;
+          background: #fff;
+         }
+    .card-fogo .card-footer { 
+        background: var(--fundo); 
+        border-top: 1px solid var(--borda);
+         border-radius: 0 0 12px 12px;
+         }
+    .rotulo {
+     font-size: .8rem;
+      font-weight: 600;
+      }
+    .rotulo-dir { 
+        font-size: .72rem; 
+        color: #6b7a73; 
+    }
+ 
+    /* localização */
+    .local-box {  
+        border: 1px solid var(--borda);
+        border-radius: 10px;
+        padding: .6rem .8rem;
+        display: flex; 
+        align-items: center; 
+    }
+    .local-icone { 
+        width: 36px;
+        height: 36px;
+        border-radius: 8px;
+        background: var(--faixa);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-right: .75rem;
+        flex-shrink: 0; 
+    }
+    .local-texto {
+    flex: 1;
+    min-width: 0; 
+}
+    .local-texto strong {
+    display: block; 
+    font-size: .85rem; 
+}
+    .local-texto small { 
+    color: #6b7a73; 
+    font-size: .72rem; 
+}
+    .link-destaque { 
+        color: var(--destaque); 
+        font-size: .75rem; 
+        font-weight: 600; 
+    }
+    .link-destaque:hover { 
+        color: #a8360f; 
+        text-decoration: none; 
+    }
+ 
+    /* tipo de ocorrência (radio como card) */
+    .tipo-opcao input { 
+        position: absolute; 
+        opacity: 0; 
+    }
+    .tipo-card { 
+        border: 1px solid var(--borda); 
+        border-radius: 10px; 
+        padding: .8rem; 
+        cursor: pointer;
+        display: flex; 
+        align-items: center; 
+        justify-content: space-between; 
+        font-size: .85rem; 
+        height: 100%; 
+    }
+    .tipo-card .fa-circle { 
+        color: #cfd5cc; 
+    }
+    .tipo-card .check { 
+        display: none; 
+        color: var(--destaque); 
+    }
+    .tipo-opcao input:checked + .tipo-card { 
+        background: var(--destaque-claro); 
+        border-color: var(--destaque); 
+        font-weight: 600; 
+    }
+    .tipo-opcao input:checked + .tipo-card .fa-circle { 
+        display: none; 
+    }
+    .tipo-opcao input:checked + .tipo-card .check { 
+        display: inline; 
+    }
+    .tipo-opcao input:focus + .tipo-card { 
+        box-shadow: 0 0 0 .2rem rgba(201,67,19,.25); 
+    }
+ 
+    /* foto */
+    .foto-box { 
+        border: 1px dashed #c3cabf; 
+        border-radius: 10px; 
+        padding: .8rem; 
+        cursor: pointer;
+        display: flex; 
+        align-items: center; 
+        margin: 0; 
+    }
+    .foto-icone { 
+        width: 36px; 
+        height: 36px; 
+        border-radius: 8px; 
+        background: var(--faixa);
+      display: flex; 
+      align-items: center; 
+      justify-content: center; 
+      margin-right: .75rem; 
+  }
+ 
+    /* botões */
+    .btn-fogo { 
+        background: var(--destaque); 
+        border-color: var(--destaque); 
+        color: #fff; 
+        font-weight: 600; 
+    }
+    .btn-fogo:hover { 
+        background: #a8360f; 
+        border-color: #a8360f; 
+        color: #fff; 
+    }
+    .btn-fogo:disabled { 
+        opacity: .65; 
+    }
+    .btn-claro { 
+        background: #fff; 
+        border: 1px solid var(--borda); 
+        color: var(--verde); 
+        font-weight: 600; 
+    }
+ 
+    /* coluna lateral */
+    #mapa { height: 200px; border-radius: 10px; }
+    .card-seguranca { background: var(--faixa); border-color: var(--faixa); }
+    .icone-emerg { width: 40px; height: 40px; border-radius: 10px; background: var(--destaque-claro);
+                   color: var(--destaque); display: flex; align-items: center; justify-content: center; margin-right: .75rem; }
+    footer { border-top: 1px solid var(--borda); background: #fff; font-size: .72rem; color: #6b7a73; }
