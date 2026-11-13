@@ -74,8 +74,10 @@ function valido(n) {
                 return L.marker(latlng, { icon: criarIcone(nivelDoFoco(feature.properties)) });
             },
             onEachFeature: function (feature, layer) {
-                layer.bindPopup(popupFoco(feature.properties));
+            layer.bindPopup(popupFoco(feature.properties));
+            marcadoresPorId["inpe-" + feature.properties.foco_id] = layer;   // novo
             }
+
         }).addTo(camadaFocos);
     }
 
@@ -95,24 +97,24 @@ function valido(n) {
         }
     }
 
-    function featuresParaAlertas(features) {
-        return features.map(function (f) {
-            return {
-                lat: f.geometry.coordinates[1],
-                lng: f.geometry.coordinates[0],
-                nivel: nivelDoFoco(f.properties),
-                titulo: "Foco de calor (satélite)",
-                local: f.properties.municipio || ""
-            };
-        });
-    }
+    function capitalizar(txt) {
+    return (txt || "").toLowerCase().replace(/(^|\s)\S/g, function (l) { return l.toUpperCase(); });
+}
 
-//TESTE APENAS
-buscarFocos()
-    .then(function (focos) {
-        console.log("Focos recebidos:", focos.length);
-        console.log("Primeiro foco:", focos[0]);
-    })
-    .catch(function (erro) {
-        console.error("Falhou:", erro);
+function featuresParaAlertas(features) {
+    return features.map(function (f) {
+        var p = f.properties;
+        return {
+            id: "inpe-" + p.foco_id,
+            origem: "inpe",
+            tipo: "calor",
+            nivel: nivelDoFoco(p),
+            lat: f.geometry.coordinates[1],
+            lng: f.geometry.coordinates[0],
+            titulo: "Foco de calor",
+            local: capitalizar(p.municipio),
+            detalhe: "Satélite " + p.satelite,
+            criadoEm: p.data_hora_gmt
+        };
     });
+}
