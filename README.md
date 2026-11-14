@@ -5,7 +5,7 @@ Aplicativo desenvolvido para alertar para os usuários sobre incêndios iminente
 
 ## Tecnologias Utilizadas
 - HTML5, CSS3, JavaScript
-- Banco de Dados: MySQL
+- Banco de Dados: SQLite
 - Caso Necessário será utilizado uma linguagem de Mobile (Ex: Swift/ React)
 
 ## Estrutura do Projeto
