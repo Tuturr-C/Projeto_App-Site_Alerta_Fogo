@@ -170,11 +170,32 @@
 }
 
 .risco-resumo {
+    --cor: #b3361f;
+    --fundo: #f9e0da;
     padding: 24px 20px 20px;
     border-radius: 16px;
-    background: #fff0e8;
-    color: var(--cor-nav);
+    background: var(--fundo);
+    color: var(--cor);
+    transition: background .3s;
 }
+
+.risco-resumo p,
+.risco-resumo small { color: var(--cor); }
+
+.risco-resumo small {
+    display: block;
+    margin-top: 10px;
+    font-size: 11px;
+    opacity: .8;
+}
+
+.risco-resumo.nivel-baixo    { --cor: #3f6b3a; --fundo: #e1ead9; }
+.risco-resumo.nivel-moderado { --cor: #8a6a12; --fundo: #f6ecd0; }
+.risco-resumo.nivel-alto     { --cor: #b3361f; --fundo: #f9e0da; }
+.risco-resumo.nivel-critico  { --cor: #7b0d1e; --fundo: #fde8ea; }
+
+.pin-critico { background: #7b0d1e; }
+.tag-critico { background: #fde8ea; color: #7b0d1e; }
 
 .resumo-topo {
     justify-content: space-between;
