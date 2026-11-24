@@ -6,6 +6,412 @@
     font-display: swap;
 }
 
+@font-face {
+    font-family: 'Inter';
+    src: url('../fonts/Inter-VariableFont_opsz,wght.ttf') format('truetype');
+    font-style: normal;
+    font-weight: 100 900;
+    font-display: swap;
+}
+
+:root {
+    --cor-primaria: #243831;
+    --cor-superficie: #FFFFFF;
+    --cor-segundaria: #66736B;
+    --cor-fundo: #DEE4DC;
+    --cor-nav: #C94313;
+    --cor-navbar: #fff;
+}
+
+/* ===== Página: Orientações ===== */
+
+.ori-page {
+    width: min(1280px, 100%);
+    margin: 0 auto;
+    padding: 28px 24px 40px;
+    box-sizing: border-box;
+}
+
+/* Cabeçalho */
+.ori-hero {
+    margin-bottom: 28px;
+}
+
+.ori-selo {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 6px 12px;
+    border-radius: 999px;
+    background: #fff0e8;
+    color: var(--cor-nav);
+    font-size: 12px;
+    font-weight: 700;
+}
+
+.ori-hero h1 {
+    margin: 14px 0 8px;
+    font-size: clamp(26px, 4vw, 38px);
+    font-weight: 800;
+    line-height: 1.15;
+    color: var(--cor-primaria);
+}
+
+.ori-hero p {
+    max-width: 680px;
+    margin: 0;
+    font-size: 16px;
+    line-height: 1.6;
+    color: #4f5d55;
+}
+
+/* Seções */
+.ori-secao {
+    margin-bottom: 36px;
+}
+
+.ori-secao-topo {
+    margin-bottom: 16px;
+}
+
+.ori-secao-topo h2 {
+    margin: 0 0 4px;
+    font-size: clamp(20px, 2.5vw, 26px);
+    font-weight: 800;
+    color: var(--cor-primaria);
+}
+
+.ori-secao-topo p {
+    margin: 0;
+    font-size: 15px;
+    line-height: 1.5;
+    color: #4f5d55;
+}
+
+/* Faixa de emergência */
+.ori-emergencia {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    margin-bottom: 36px;
+    padding: 22px 24px;
+    border-radius: 18px;
+    background: var(--cor-nav);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+    color: #fff;
+}
+
+.ori-emergencia-texto {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.ori-emergencia-icone {
+    display: grid;
+    place-items: center;
+    flex: 0 0 52px;
+    width: 52px;
+    height: 52px;
+    border-radius: 14px;
+    background: rgba(255, 255, 255, 0.18);
+    font-size: 24px;
+}
+
+.ori-emergencia h2 {
+    margin: 0 0 2px;
+    font-size: clamp(18px, 2.2vw, 22px);
+    font-weight: 800;
+}
+
+.ori-emergencia p {
+    margin: 0;
+    font-size: 14px;
+    line-height: 1.5;
+    color: rgba(255, 255, 255, 0.9);
+}
+
+.ori-btn-ligar {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    flex: 0 0 auto;
+    padding: 12px 22px;
+    border-radius: 12px;
+    background: #fff;
+    color: var(--cor-nav);
+    font-size: 18px;
+    font-weight: 800;
+    text-decoration: none;
+    transition: transform 0.2s ease;
+}
+
+.ori-btn-ligar:hover,
+.ori-btn-ligar:focus-visible {
+    color: #a8360f;
+    text-decoration: none;
+    transform: translateY(-2px);
+}
+
+/* Cards (antes / durante / depois) */
+.ori-grid-3 {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 16px;
+}
+
+.ori-card {
+    padding: 24px 22px;
+    border-radius: 18px;
+    background: var(--cor-superficie);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+}
+
+.ori-card-icone {
+    display: grid;
+    place-items: center;
+    width: 48px;
+    height: 48px;
+    margin-bottom: 14px;
+    border-radius: 12px;
+    background: #fff0e8;
+    color: var(--cor-nav);
+    font-size: 22px;
+}
+
+.ori-card h3 {
+    margin: 0 0 12px;
+    font-size: 18px;
+    font-weight: 700;
+}
+
+.ori-lista {
+    display: grid;
+    gap: 10px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.ori-lista li {
+    position: relative;
+    padding-left: 22px;
+    font-size: 14px;
+    line-height: 1.55;
+    color: var(--cor-segundaria);
+}
+
+.ori-lista li::before {
+    content: "\f00c";
+    position: absolute;
+    left: 0;
+    top: 1px;
+    font-family: "Font Awesome 6 Free";
+    font-weight: 900;
+    font-size: 12px;
+    color: var(--cor-nav);
+}
+
+.ori-lista strong {
+    color: var(--cor-primaria);
+}
+
+/* Situações específicas */
+.ori-grid-2 {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 16px;
+}
+
+.ori-situacao {
+    display: flex;
+    gap: 16px;
+    padding: 22px;
+    border-radius: 18px;
+    background: var(--cor-superficie);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+}
+
+.ori-situacao .ori-card-icone {
+    flex: 0 0 48px;
+    margin-bottom: 0;
+}
+
+.ori-situacao h3 {
+    margin: 0 0 10px;
+    font-size: 17px;
+    font-weight: 700;
+}
+
+/* O que não fazer */
+.ori-evitar {
+    padding: 24px;
+    border-radius: 18px;
+    background: var(--cor-superficie);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+}
+
+.ori-evitar .ori-lista {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px 28px;
+}
+
+.ori-evitar .ori-lista li::before {
+    content: "\f00d";
+}
+
+/* Telefones */
+.ori-tel-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 12px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.ori-tel {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 16px 18px;
+    border: 2px solid transparent;
+    border-radius: 16px;
+    background: var(--cor-superficie);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+    color: var(--cor-primaria);
+    text-decoration: none;
+    transition: border-color 0.2s ease, transform 0.2s ease;
+}
+
+.ori-tel:hover,
+.ori-tel:focus-visible {
+    border-color: var(--cor-nav);
+    color: var(--cor-primaria);
+    text-decoration: none;
+    transform: translateY(-2px);
+}
+
+.ori-tel-numero {
+    display: grid;
+    place-items: center;
+    flex: 0 0 56px;
+    height: 44px;
+    border-radius: 12px;
+    background: #fff0e8;
+    color: var(--cor-nav);
+    font-size: 18px;
+    font-weight: 800;
+}
+
+.ori-tel-texto {
+    display: grid;
+    gap: 2px;
+    min-width: 0;
+}
+
+.ori-tel-texto strong {
+    font-size: 15px;
+}
+
+.ori-tel-texto span {
+    font-size: 12px;
+    color: var(--cor-segundaria);
+}
+
+/* Chamada para informar foco */
+.ori-cta {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 20px;
+    border: 2px solid transparent;
+    border-radius: 18px;
+    background: var(--cor-superficie);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+    color: var(--cor-primaria);
+    text-decoration: none;
+    transition: border-color 0.2s ease, transform 0.2s ease;
+}
+
+.ori-cta:hover,
+.ori-cta:focus-visible {
+    border-color: var(--cor-nav);
+    color: var(--cor-primaria);
+    text-decoration: none;
+    transform: translateY(-2px);
+}
+
+.ori-cta-icone {
+    display: grid;
+    place-items: center;
+    flex: 0 0 48px;
+    width: 48px;
+    height: 48px;
+    border-radius: 12px;
+    background: #fff0e8;
+    color: var(--cor-nav);
+    font-size: 22px;
+}
+
+.ori-cta-texto {
+    display: grid;
+    flex: 1;
+    min-width: 0;
+    gap: 2px;
+}
+
+.ori-cta-texto strong {
+    font-size: 16px;
+}
+
+.ori-cta-texto span {
+    font-size: 13px;
+    color: var(--cor-segundaria);
+}
+
+.ori-cta-seta {
+    color: var(--cor-segundaria);
+    font-size: 14px;
+}
+
+/* Responsivo */
+@media (max-width: 992px) {
+    .ori-grid-3 {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 760px) {
+    .ori-grid-2,
+    .ori-evitar .ori-lista {
+        grid-template-columns: 1fr;
+    }
+
+    .ori-emergencia {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+}
+
+@media (max-width: 560px) {
+    .ori-page {
+        padding: 24px 14px 32px;
+    }
+
+    .ori-situacao {
+        flex-direction: column;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .ori-btn-ligar,
+    .ori-tel,
+    .ori-cta {
+        transition: none;
+    }
+}
 
 :root {
     --cor-primaria: #243831;
